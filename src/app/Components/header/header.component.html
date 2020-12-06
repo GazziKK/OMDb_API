@@ -1,7 +1,19 @@
-<header>
+<!--<header class="mat-app-background">-->
+<header >
   <div class="search">
 
-    <input type="text" placeholder="Write Film Name" name="InputSearch" [(ngModel)]="InputSearch">
+    <mat-form-field class="example-form-field">
+      <mat-label>Write Film Name</mat-label>
+      <label>
+        <input matInput type="text" [(ngModel)]="InputSearch">
+      </label>
+      <button mat-button *ngIf="InputSearch" matSuffix mat-icon-button aria-label="Clear" (click)="InputSearch=''">
+            <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
     <button (click)='search(InputSearch)' mat-raised-button color="primary">Search</button>
   </div>
 </header>
+
+
+
