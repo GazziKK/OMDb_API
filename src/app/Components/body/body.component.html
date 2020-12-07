@@ -1,1 +1,37 @@
-<p>body works!</p>
+<!--<header class="mat-app-background">-->
+<div class="mat-app-background">
+  <div class="search">
+    <mat-form-field class="example-form-field">
+      <mat-label>Write Film Name</mat-label>
+      <label>
+        <input matInput type="text" [(ngModel)]="InputSearch">
+      </label>
+      <button mat-button *ngIf="InputSearch" matSuffix mat-icon-button aria-label="Clear" (click)="InputSearch=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button (click)='search(InputSearch)' mat-raised-button color="primary">Search</button>
+  </div>
+
+  <div class="search_result">
+    <mat-card class="example-card" *ngFor="let c of respons">
+      <mat-card-header>
+        <mat-card-title>{{c.Title}}</mat-card-title>
+        <mat-card-subtitle>{{c.Type}}</mat-card-subtitle>
+        <mat-card-subtitle>{{c.Year}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{c.Poster}}" alt="Photo of a Shiba Inu">
+      <mat-card-actions>
+        <button mat-flat-button color="warn">Details</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+
+
+
+</div>
+
+
+
+

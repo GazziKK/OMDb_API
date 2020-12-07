@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SearchService} from '../../shared/service/search.service';
 
 @Component({
   selector: 'app-body',
@@ -6,10 +7,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent implements OnInit {
+  InputSearch: string;
+  respons: [];
 
-  constructor() { }
+  constructor(
+    private searchService: SearchService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  search(Search: string) {
+    if (Search === undefined){
+      alert('Search input Empty');
+    }
+    else {
+      this.searchService.getMoviesByTitle(this.InputSearch.toLowerCase()).subscribe( data => {
+        if (data.Search === undefined){
+          alert('not found')
+        }
+        else {
+          this.respons = data.Search;
+          console.log(this.respons);
+        }
+      });
+      this.InputSearch = '';
+    }
+  }
 }
