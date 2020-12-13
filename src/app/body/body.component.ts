@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {SearchService} from '../../shared/service/search.service';
+import {SearchService} from '../shared/service/search.service';
+import {log} from 'util';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-body',
@@ -11,10 +13,14 @@ export class BodyComponent implements OnInit {
   respons: [];
 
   constructor(
-    private searchService: SearchService
+    private searchService: SearchService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.searchService.getMoviesByTitle('batman').subscribe(data => {
+      this.respons = data.Search}
+    );
   }
 
   search(Search: string) {
@@ -33,5 +39,10 @@ export class BodyComponent implements OnInit {
       });
       this.InputSearch = '';
     }
+  }
+
+  movieDetails(imdbID: string) {
+    this.router.navigate([`searchDetails/${imdbID}`])
+
   }
 }
