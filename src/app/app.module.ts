@@ -13,6 +13,7 @@ import {BodyComponent} from './body/body.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { SearchDetailsComponent } from './search-details/search-details.component';
 
 
@@ -34,7 +35,8 @@ import { SearchDetailsComponent } from './search-details/search-details.componen
     MatFormFieldModule,
     MatIconModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

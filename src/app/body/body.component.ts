@@ -10,16 +10,30 @@ import {Router} from '@angular/router';
 export class BodyComponent implements OnInit {
   InputSearch: string;
   response: [];
+  totalResults: number;
+  pageNumber: number;
+
 
   constructor(
     private searchService: SearchService,
     private router: Router
-  ) { }
+  ) {
+    if (sessionStorage.getItem('paginator')){
+      this.pageNumber = +sessionStorage.getItem('paginator');
+    }
+    else if (sessionStorage.getItem('paginator') === null)
+    this.pageNumber = 1;
+  }
 
   ngOnInit(): void {
-    this.searchService.getMoviesByTitle("batman").subscribe( data => {
-      this.response = data.Search;
-    });
+    if (sessionStorage.getItem('name') === null){
+      return;
+    }else if (sessionStorage.getItem('name')){
+      this.searchService.paginator().subscribe(data => {
+        this.response = data.Search;
+        this.totalResults = Math.round( data.totalResults / 10);
+      });
+    }
   }
 
   search(Search: string) {
@@ -33,15 +47,35 @@ export class BodyComponent implements OnInit {
         }
         else {
           this.response = data.Search;
+          this.totalResults = Math.round( data.totalResults / 10);
         }
       });
-      // this.InputSearch = '';
+      this.InputSearch = '';
     }
   }
 
   movieDetails(id: string) {
-    this.router.navigate([`searchDetails/${id}`]).then(error => {
-      console.error('not found poster');
-    });
+    this.router.navigate([`searchDetails/${id}`]);
+  }
+
+  paginator(b: boolean) {
+    if (b === false){
+      if (this.pageNumber >= 2) {
+      this.pageNumber--;
+      sessionStorage.setItem('paginator', this.pageNumber.toString());
+      this.searchService.paginator().subscribe(data => {
+        this.response = data.Search;
+      });
+      }
+    }
+    else if (b === true){
+      if (this.pageNumber <= this.totalResults - 1) {
+        this.pageNumber++;
+        sessionStorage.setItem('paginator', this.pageNumber.toString());
+        this.searchService.paginator().subscribe(data => {
+          this.response = data.Search;
+        });
+      }
+    }
   }
 }

@@ -1,5 +1,7 @@
 <!--<header class="mat-app-background">-->
 <div class="mat-app-background">
+
+
   <div class="search">
     <mat-form-field class="example-form-field">
       <mat-label>Write Film Name</mat-label>
@@ -33,9 +35,12 @@
     </mat-card>
   </div>
 
-
-
-
+  <div class="paginator" *ngIf="response">
+    <!--  <div class="paginator">-->
+    <span (click)="paginator(false)"> << </span>
+    <span>{{pageNumber}} in {{totalResults}}</span>
+    <span (click)="paginator(true)"> >> </span>
+  </div>
 </div>
 
 

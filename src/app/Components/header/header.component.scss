@@ -17,3 +17,8 @@ body{
 .example-spacer {
   flex: 1 1 auto;
 }
+span:hover{
+  cursor: pointer;
+  color: red;
+  text-decoration: underline;
+}
