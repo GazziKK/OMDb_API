@@ -1,3 +1,15 @@
 .mat-app-background{
   min-height: calc(93% + 2px);
 }
+
+img{
+    display: block;
+    margin: 0 auto;
+}
+b{
+  color: #995eb5;
+}
+.poster_not_found{
+  width: 300px;
+  border: 5px solid red;
+}

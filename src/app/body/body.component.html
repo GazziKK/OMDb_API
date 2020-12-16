@@ -13,14 +13,20 @@
     <button (click)='search(InputSearch)' mat-raised-button color="primary">Search</button>
   </div>
 
-  <div class="search_result">
-    <mat-card class="example-card" *ngFor="let c of respons">
+  <div class="search_result" >
+    <mat-card class="example-card" *ngFor="let c of response" (click)="movieDetails(c.imdbID)">
       <mat-card-header>
-        <mat-card-title>{{c.Title}}</mat-card-title>
+        <mat-card-title><p>{{c.Title}}</p></mat-card-title>
         <mat-card-subtitle>{{c.Type}}</mat-card-subtitle>
         <mat-card-subtitle>{{c.Year}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="{{c.Poster}}" alt="Photo of a Shiba Inu">
+
+      <div *ngIf="c.Poster === 'N/A'; else poster ">
+        <h1 style="color: red">Poster not Found</h1>
+      </div>
+      <ng-template #poster>
+        <img mat-card-image src="{{c.Poster}}" alt="Poster">
+      </ng-template>
       <mat-card-actions>
         <button class="btn_search" mat-flat-button color="warn" (click)="movieDetails(c.imdbID)">Details</button>
       </mat-card-actions>

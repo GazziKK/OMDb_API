@@ -13,11 +13,12 @@ export class SearchService {
   }
 
   getMoviesByTitle(name): Observable<any>{
-    return this.http.get<any>(`${this.url}s=${name}`);
+    // return this.http.get<any>(`${this.url}s=${name}&page=3`);
+    return this.http.get<any>(`${this.url}s=${name}&page=3`);
   }
 
-  getMovieDetails(id): Observable<ImovieDetails>{
-    return this.http.get<ImovieDetails>(`${this.url}i=${id}`);
+  getMovieDetails(id): Observable<Array<ImovieDetails>>{
+    return this.http.get<Array<ImovieDetails>>(`${this.url}i=${id}`);
   }
 
 }

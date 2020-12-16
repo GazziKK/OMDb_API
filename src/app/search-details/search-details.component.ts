@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {SearchService} from '../shared/service/search.service';
-import {log} from 'util';
 
 @Component({
   selector: 'app-search-details',
@@ -10,6 +9,7 @@ import {log} from 'util';
 })
 export class SearchDetailsComponent implements OnInit {
   movieId: string;
+  response = [];
   constructor(
     private activateRoute: ActivatedRoute,
     private router: Router,
@@ -24,7 +24,7 @@ export class SearchDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchService.getMovieDetails(this.movieId).subscribe(response => {
-      console.log(response);
+      this.response.push(response);
     });
   }
 

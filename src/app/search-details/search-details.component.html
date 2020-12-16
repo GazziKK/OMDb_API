@@ -1,6 +1,44 @@
 <div class="mat-app-background">
 
+  <div *ngFor="let r of response">
+    <div class="poster">
+      <div class="poster_not_found" *ngIf="r.Poster === 'N/A'; else poster ">
+        <h1 style="color: red">Poster not Found</h1>
+      </div>
+      <ng-template #poster>
+        <img src="{{r.Poster}}" alt="Poster">
+      </ng-template>
+    </div>
+    <div>
+      <p><b>• Title:</b> {{r.Title}}</p>
+      <p><b>• Year:</b> {{r.Year}}</p>
+      <p><b>• Rated:</b> {{r.Rated}}</p>
+      <p><b>• Released:</b> {{r.Released}}</p>
+      <p><b>• Runtime:</b> {{r.Runtime}}</p>
+      <p><b>• Genre:</b> {{r.Genre}}</p>
+      <p><b>• Director:</b> {{r.Director}}</p>
+      <p><b>• Writer:</b> {{r.Writer}}</p>
+      <p><b>• Actors:</b> {{r.Actors}}</p>
+      <p><b>• Plot:</b> {{r.Plot}}</p>
+      <p><b>• Language:</b> {{r.Language}}</p>
+      <p><b>• Country:</b> {{r.Country}}</p>
+      <p><b>• Awards:</b> {{r.Awards}}</p>
+      <p><b>• Metascore:</b> {{r.Metascore}}</p>
+      <p><b>• imdbRating:</b> {{r.imdbRating}}</p>
+      <p><b>• imdbVotes:</b> {{r.imdbVotes}}</p>
+      <p><b>• Ratings:</b> </p>
+      <ul *ngFor="let rating of r.Ratings">
+        <li><b>Source:</b> {{rating.Source}}</li>
+        <li><b>Value:</b> {{rating.Value}}</li>
+      </ul>
 
+      <p><b>• Type:</b> {{r.Type}}</p>
+      <p><b>• DVD:</b> {{r.DVD}}</p>
+      <p><b>• BoxOffice:</b> {{r.BoxOffice}}</p>
+      <p><b>• Production:</b> {{r.Production}}</p>
+      <p><b>• Website:</b> {{r.Website}}</p>
+    </div>
+  </div>
 
 
 </div>

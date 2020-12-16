@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from '../shared/service/search.service';
-import {log} from 'util';
 import {Router} from '@angular/router';
 
 @Component({
@@ -10,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class BodyComponent implements OnInit {
   InputSearch: string;
-  respons: [];
+  response: [];
 
   constructor(
     private searchService: SearchService,
@@ -18,9 +17,9 @@ export class BodyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.searchService.getMoviesByTitle('batman').subscribe(data => {
-      this.respons = data.Search}
-    );
+    this.searchService.getMoviesByTitle("batman").subscribe( data => {
+      this.response = data.Search;
+    });
   }
 
   search(Search: string) {
@@ -30,19 +29,19 @@ export class BodyComponent implements OnInit {
     else {
       this.searchService.getMoviesByTitle(this.InputSearch.toLowerCase()).subscribe( data => {
         if (data.Search === undefined){
-          alert('not found')
+          alert('Not Found');
         }
         else {
-          this.respons = data.Search;
-          console.log(this.respons);
+          this.response = data.Search;
         }
       });
-      this.InputSearch = '';
+      // this.InputSearch = '';
     }
   }
 
-  movieDetails(imdbID: string) {
-    this.router.navigate([`searchDetails/${imdbID}`])
-
+  movieDetails(id: string) {
+    this.router.navigate([`searchDetails/${id}`]).then(error => {
+      console.error('not found poster');
+    });
   }
 }
