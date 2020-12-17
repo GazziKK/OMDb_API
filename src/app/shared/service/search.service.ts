@@ -12,7 +12,7 @@ export class SearchService {
   pageNumber: string;
 
   constructor( private http: HttpClient) {
-    this.url = 'http://www.omdbapi.com/?apikey=a99892de&';
+    this.url = 'https://www.omdbapi.com/?apikey=a99892de&';
   }
 
   getMoviesByTitle(name): Observable<any>{
