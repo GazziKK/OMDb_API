@@ -10,12 +10,13 @@ import {SearchService} from '../shared/service/search.service';
 export class SearchDetailsComponent implements OnInit {
   movieId: string;
   response = [];
+
   constructor(
     private activateRoute: ActivatedRoute,
     private router: Router,
     private searchService: SearchService,
   ) {
-    this.router.events.subscribe( (event) => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.movieId = this.activateRoute.snapshot.paramMap.get('id');
       }
@@ -28,4 +29,7 @@ export class SearchDetailsComponent implements OnInit {
     });
   }
 
+  back() {
+    this.router.navigate(['/main']);
+  }
 }

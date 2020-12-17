@@ -1,6 +1,6 @@
 <div class="mat-app-background">
 
-  <div *ngFor="let r of response">
+  <div  *ngFor="let r of response">
     <div class="poster">
       <div class="poster_not_found" *ngIf="r.Poster === 'N/A'; else poster ">
         <h1 style="color: red">Poster not Found</h1>
@@ -9,7 +9,7 @@
         <img src="{{r.Poster}}" alt="Poster">
       </ng-template>
     </div>
-    <div>
+    <div class="wrapper">
       <p><b>• Title:</b> {{r.Title}}</p>
       <p><b>• Year:</b> {{r.Year}}</p>
       <p><b>• Rated:</b> {{r.Rated}}</p>
@@ -40,5 +40,8 @@
     </div>
   </div>
 
+  <div class="btn" (click)="back()">
+    <mat-icon aria-hidden="false" aria-label="fas fa-hand-point-left">home</mat-icon>
+  </div>
 
 </div>
